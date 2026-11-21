@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-guc-black text-guc-white;
+  background-image: theme('backgroundImage.app-gradient');
+  background-attachment: fixed;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+/* Classic (light) theme overrides */
+.theme-classic {
+  color-scheme: light;
+}
+.theme-classic body {
+  /* Soft light gradient for classic theme */
+  @apply text-black;
+  background: linear-gradient(135deg, #f7f7f9, #ffffff);
+}
+.theme-classic .glass {
+  /* Softer translucent white glass */
+  @apply bg-white/70 border-black/10 shadow-soft;
+}
+.theme-classic .glass-strong {
+  @apply bg-white/80 border-black/10 shadow-glow;
+}
+.theme-classic .card {
+  @apply bg-white/90 shadow-soft;
+}
+.theme-classic .glass-input {
+  @apply bg-white/80 border-black/20 text-black placeholder-black/50;
+  transition: box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.theme-classic select.glass-input {
+  color: #111;
+}
+.theme-classic .glass-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(128,0,0,.15);
+  border-color: rgba(128,0,0,.35);
+}
+
+/* Header gradient should be lighter in classic */
+.theme-classic .bg-header-gradient {
+  background-image: linear-gradient(90deg, rgba(128,0,0,.25), rgba(255,215,0,.25));
+}
+
+/* Navbar text and button adjustments */
+.theme-classic .glass-strong {
+  color: #111;
+}
+.theme-classic .btn-primary {
+  @apply bg-guc-maroon text-white shadow-soft;
+}
+.theme-classic .btn-gold {
+  @apply bg-guc-gold text-black shadow-soft;
+}
+
+/* Classic surfaces: force readable base text color */
+.theme-classic .glass, .theme-classic .card, .theme-classic .glass-strong { color: #111 !important; }
+
+/* Classic theme: extend white/gray overrides for more variants */
+.theme-classic .text-white\/40 { color: rgba(17,17,17,.4) !important; }
+.theme-classic .text-white\/30 { color: rgba(17,17,17,.3) !important; }
+.theme-classic .text-white\/20 { color: rgba(17,17,17,.2) !important; }
+.theme-classic .text-white\/10 { color: rgba(17,17,17,.1) !important; }
+.theme-classic .placeholder-white\/60::placeholder { color: rgba(17,17,17,.6) !important; }
+.theme-classic .bg-white\/5 { background-color: rgba(17,17,17,.03) !important; }
+.theme-classic .border-white\/5 { border-color: rgba(17,17,17,.08) !important; }
+.theme-classic .text-gray-200 { color: #6b7280 !important; }
+.theme-classic .text-gray-500 { color: #4b5563 !important; }
+
+/* Smooth transitions on common surfaces */
+.glass, .glass-strong, .card {
+  transition: background-color .25s ease, color .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* Transparent Navbar modifier */
+.navbar-transparent {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl shadow-soft;
+}
+.glass-strong {
+  @apply bg-white/15 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-glow;
+}
+.glass-input {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/50 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-guc-gold/60 transition;
+}
+.glass-divider {
+  @apply border-t border-white/10;
+}
+
+/* Ensure select dropdown options are legible (white-on-white issue) */
+select.glass-input {
+  color: #fff; /* closed control text on dark background */
+}
+select.glass-input option {
+  color: #111;             /* option text in the opened dropdown */
+  background-color: #fff;  /* dropdown panel background for options */
+}
+select.glass-input optgroup {
+  color: #111;
+}
+/* When focused/open, keep options high-contrast */
+select.glass-input:focus option,
+select.glass-input:active option {
+  color: #111;
+  background-color: #fff;
+}
+/* Windows High Contrast / forced-colors accessibility */
+@media (forced-colors: active) {
+  select.glass-input option {
+    forced-color-adjust: none;
+    color: CanvasText;
+    background: Canvas;
+  }
+}
+.glass-divider {
+  @apply border-t border-white/10;
+}
+
+/* Card */
+.card {
+  @apply glass p-4 rounded-2xl;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition relative overflow-hidden;
+}
+.btn-primary {
+  @apply bg-guc-maroon text-white hover:opacity-95 shadow-glow;
+}
+.btn-gold {
+  @apply bg-guc-gold text-black hover:brightness-110 shadow-glow;
+}
+
+/* Red button variant */
+.btn-red {
+  @apply bg-red-600 text-white hover:bg-red-700 shadow-glow;
+}
+.theme-classic .btn-red {
+  @apply bg-red-600 text-white hover:bg-red-700 shadow-soft;
+}
+
+/* Subtle glow on hover */
+.hover-glow:hover {
+  box-shadow: 0 0 0 0 rgba(255,215,0,0.4);
+  animation: glowPulse 1.2s ease-out forwards;
+}
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.4); }
+  100% { box-shadow: 0 0 40px 12px rgba(255,215,0,0); }
+}
